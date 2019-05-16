@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Form extends Component {
     state = {
         title: '',
-        globalTitle:''
+        globalTitle:'Titre'
     }
 
     onChange = (e) => {
@@ -16,7 +16,8 @@ class Form extends Component {
         console.log('Formulaire Rendu')
     }
 
-    submitForm = () => {
+    submitForm = (event) => {
+        event.preventDefault()
         this.setState({globalTitle: `Mon formulaire - ${this.state.title}`})
     }
 
@@ -31,9 +32,8 @@ class Form extends Component {
             <div className='Form'>
                 <form onSubmit={this.submitForm}>
                     <fieldset>
-
-                        <div className='form-data'>
-                            <label htmlFor='title'>Votre texte ici</label>
+                        <h1>{this.state.globalTitle}</h1>
+                            <label htmlFor='title'>Titre</label>
                             <input
                                 type='text'
                                 id='title'
@@ -41,16 +41,12 @@ class Form extends Component {
                                 onChange={this.onChange}
                                 value={this.state.title}
                             />
-                        </div>
 
                         <hr />
-
-                        <div className='form-data'>
                             <input
                                 type='submit' 
                                 value='Validation'
                             />
-                        </div>
 
                     </fieldset>
                 </form>
